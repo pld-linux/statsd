@@ -1,7 +1,10 @@
+# TODO
+# - packages for apis (examples/* that are usable as library)
+# - packages for clients https://github.com/etsy/statsd/wiki
 Summary:	Lightweight network daemon to collect metrics over UDP
 Name:		statsd
 Version:	0.6.0
-Release:	0.5
+Release:	0.6
 License:	BSD
 Group:		Networking/Daemons
 Source0:	https://github.com/etsy/statsd/archive/v0.6.0.tar.gz?/%{name}-%{version}.tgz
@@ -29,6 +32,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_appdir}
 cp -a *.js bin lib backends $RPM_BUILD_ROOT%{_appdir}
 
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -42,3 +48,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/lib
 %dir %{_appdir}/bin
 %attr(755,root,root) %{_appdir}/bin/statsd
+%{_examplesdir}/%{name}-%{version}
